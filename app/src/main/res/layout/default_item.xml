@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/item"
+        android:id="@+id/default_item"
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:paddingLeft="5dp"

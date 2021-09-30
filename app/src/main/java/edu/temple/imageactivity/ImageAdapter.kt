@@ -22,11 +22,11 @@ class ImageAdapter (val images: ArrayList<ImageObject> ) : RecyclerView.Adapter<
 
 
     override fun onBindViewHolder(viewHolder: ViewHolder, index: Int) {
-        viewHolder.imageView.setImageResource(images.get(index)._id)
+        viewHolder.imageView.setImageResource(images.get(index).id)
         viewHolder.imageView.setOnClickListener {
-            it.rootView.findViewById<ImageView>(R.id.item)
-                .setImageResource(images.get(index)._id)
-            it.rootView.findViewById<TextView>(R.id.textView).text = images.get(index)._name
+            it.rootView.findViewById<ImageView>(R.id.default_item)
+                .setImageResource(images.get(index).id)
+            it.rootView.findViewById<TextView>(R.id.textView).text = images.get(index).name
         }
     }
 
@@ -38,6 +38,17 @@ class ImageAdapter (val images: ArrayList<ImageObject> ) : RecyclerView.Adapter<
 
     override fun getItemCount(): Int {
         return images.size
+    }
+    private lateinit var mListener:onItemCickListener
+
+    //create an Interface to recieve the adapter position of the item clicked
+    interface onItemCickListener{
+        fun onItemClick(position:Int)
+    }
+
+    //set local listener to the given provided listener
+    fun setOnItemClickListener(listener:onItemCickListener){
+        mListener = listener
     }
 
 }
